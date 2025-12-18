@@ -1,7 +1,8 @@
-#ifndef CHAOS_SINGLE_PARTICLE_PHYSICS_PROXY_H
-#define CHAOS_SINGLE_PARTICLE_PHYSICS_PROXY_H
+#ifndef RIGIDBODY_H
+#define RIGIDBODY_H
 
 #include "MathUtils.h"
+#include "ImplicitObject.h"
 namespace Chaos
 {
     // struct RigidBody{};
@@ -21,6 +22,10 @@ namespace Chaos
 
         // Mass
         float Mass{1};
+
+        //Shape- not stored in rigidbody in chaos(to be removed later)
+        CircleShape circle{10.0f};
+
     };
 }
 

@@ -4,9 +4,9 @@
 
 #include <memory>
 #include "SingleParticlePhysicsProxy.h"
+#include "RigidBody.h"
 
-
-
+//In Chaos this FPhysicsActorHandle is a pointer to ParticleProxy and not to the rigid body itself i.e. using FPhysicsActorHandle = Chaos::FSingleParticlePhysicsProxy*
 using FPhysicsActorHandle = std::shared_ptr<Chaos::RigidBody>;
 
 class UWorld;
@@ -23,7 +23,7 @@ struct BodyProperties{
 
 class FChaosEngineInterface{
     public:
-    static void CreateRigidBody(UWorld* world,const BodyProperties& bodyProperties,FPhysicsActorHandle& Handle);
+    static void CreateActor(UWorld* world,const BodyProperties& bodyProperties,FPhysicsActorHandle& Handle);
 };
 
 #endif

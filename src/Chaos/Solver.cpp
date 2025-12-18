@@ -18,11 +18,28 @@ namespace Chaos
         }
     }
 
+    void Solver::SolveVelocityConstraints(float dt)
+    {
+        for (int i = 0; i < VelocitySolverIterationCount; i++)
+        {
+            for (auto &C : velocitySolverConstraints)
+            {
+                C->Solve(dt);
+            }
+        }
+    }
 
     void Solver::AdvanceOneTimeStep(float dt)
     {
         IntegrateVelocities(dt);
+        SolveVelocityConstraints(dt);
         IntegratePositions(dt);
-        SolveConstraints(dt);
+    }
+
+    void Solver::AddRigidBody(std::shared_ptr<RigidBody> Body)
+    {
+        Bodies.push_back(Body);
+        std::unique_ptr<CollisionConstraint> bodyPlaneConstraint=std::make_unique<CollisionConstraint>(Body,800.0f);
+        velocitySolverConstraints.push_back(std::move(bodyPlaneConstraint));
     }
 }

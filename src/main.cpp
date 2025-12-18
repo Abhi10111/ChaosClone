@@ -53,6 +53,9 @@ int main(){
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
 
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); // Set drawing color to white
+        SDL_RenderDrawLine(renderer, 0, 800, 1200, 800);
+
         SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
         
         for (auto&b :world.GetWorldComponents()){

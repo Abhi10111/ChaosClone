@@ -2,6 +2,7 @@
 #define SOLVER_H
 #include <vector>
 #include "ChaosEngineInterface.h"
+#include "Constraints.h"
 
 namespace Chaos
 {
@@ -11,13 +12,14 @@ namespace Chaos
     private:
         void IntegratePositions(float dt);
         void IntegrateVelocities(float dt);
-        void SolveConstraints(float dt){};
+        void SolveVelocityConstraints(float dt);
+
+        int VelocitySolverIterationCount = 2;
         std::vector<std::shared_ptr<RigidBody>> Bodies;
-        
+        std::vector<std::unique_ptr<Constraint>> velocitySolverConstraints;
+
     public:
-        void AddRigidBody(std::shared_ptr<RigidBody> Body){
-            Bodies.push_back(Body);
-        }
+        void AddRigidBody(std::shared_ptr<RigidBody> Body);
         void AdvanceOneTimeStep(float dt);
     };
 }

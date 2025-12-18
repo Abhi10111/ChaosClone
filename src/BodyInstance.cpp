@@ -1,6 +1,8 @@
 #include "BodyInstance.h"
 
+FBodyInstance::FBodyInstance():VelocitySolverIterationCount{2}{}
+
 void FBodyInstance::InitBody(UWorld* world,const BodyProperties& bodyProperties)
 {
-    FChaosEngineInterface::CreateRigidBody(world,bodyProperties,ActorHandle);
+    FChaosEngineInterface::CreateActor(world,bodyProperties,ActorHandle);
 }

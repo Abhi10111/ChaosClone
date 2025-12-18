@@ -1,3 +1,6 @@
+#ifndef MATH_UTILS_H
+#define MATH_UTILS_H
+#include <math.h>
 struct Vec3
 {
     float x, y, z;
@@ -21,4 +24,9 @@ struct Vec3
         z += r.z;
         return *this;
     }
+
+    float Magnitude(){
+        return sqrt(x*x+y*y+z*z);
+    }
 };
+#endif
